@@ -3,11 +3,6 @@
 
 #define VGA_BGR 1
 
-// Give the I/O pins that we're using some names that make sense
-#define HSYNC 17
-#define VSYNC 16
-#define RED_PIN 18
-
 // Length of the pixel array, and number of DMA transfers
 #define TXCOUNT 153600 // Total pixels/2 (since we have 2 pixels per byte)
 
@@ -31,7 +26,7 @@
 #define WHITE 7
 #endif
 void VGA_writePixel(int x, int y, char color);
-void VGA_initDisplay();
+void VGA_initDisplay(uint vsync_pin, uint hsync_pin, uint r_pin);
 
 void VGA_fillScreen(uint16_t color);
 

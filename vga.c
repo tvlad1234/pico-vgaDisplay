@@ -48,7 +48,7 @@ char *address_pointer = &vga_data_array[0];
 // DMA channel for dma_memcpy and dma_memset
 int memcpy_dma_chan;
 
-void VGA_initDisplay()
+void VGA_initDisplay(uint vsync_pin, uint hsync_pin, uint r_pin)
 {
     // Choose which PIO instance to use (there are two instances, each with 4 state machines)
     PIO pio = pio1;
@@ -76,9 +76,9 @@ void VGA_initDisplay()
     // Why not create these programs here? By putting the initialization function in
     // the pio file, then all information about how to use/setup that state machine
     // is consolidated in one place. Here in the C, we then just import and use it.
-    hsync_program_init(pio, hsync_sm, hsync_offset, HSYNC);
-    vsync_program_init(pio, vsync_sm, vsync_offset, VSYNC);
-    rgb_program_init(pio, rgb_sm, rgb_offset, RED_PIN);
+    hsync_program_init(pio, hsync_sm, hsync_offset, hsync_pin);
+    vsync_program_init(pio, vsync_sm, vsync_offset, vsync_pin);
+    rgb_program_init(pio, rgb_sm, rgb_offset, r_pin);
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // ===========================-== DMA Data Channels =================================================

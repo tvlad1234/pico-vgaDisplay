@@ -5,7 +5,7 @@
 Add the *pico-vgaDisplay* subdirectory to the CMakeLists.txt of your project and add *vga* in *target_link_libraries*
 
 ### Driver usage:
-Include _vga.h_ in your source file. The VGA display is initialized by calling `VGA_initDisplay();`. The used pins are set in [vga.h](vga.h). Uncomment `#define VGA_BGR 1` if you want to use the display in BGR mode instead of RGB. 
+Include _vga.h_ in your source file. The VGA display is initialized by calling `VGA_initDisplay(uint vsync_pin, uint hsync_pin, uint r_pin);`. This also sets the used pins Uncomment `#define VGA_BGR 1` if you want to use the display in BGR mode instead of RGB. 
 
 Pixels are written to the display with the `VGA_writePixel(int x, int y, char color);` function. There are 8 available colours (red, green, blue, cyan, magenta, yellow, black and white).
 
